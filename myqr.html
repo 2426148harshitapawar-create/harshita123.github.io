@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zuvi - My QR</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+    </script>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fb;
+            padding: 30px;
+        }
+
+        .card {
+            width: 400px;
+            max-width: 90%;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6657d9;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 15px;
+            background: #6657d9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #qrcode {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #profileLink {
+            margin-top: 20px;
+            word-break: break-all;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>Zuvi My QR</h1>
+
+    <input
+        type="text"
+        id="name"
+        placeholder="Full Name">
+
+    <input
+        type="text"
+        id="studentId"
+        placeholder="Student ID">
+
+    <input
+        type="number"
+        id="age"
+        placeholder="Age">
+
+    <input
+        type="date"
+        id="dob">
+
+    <input
+        type="text"
+        id="address"
+        placeholder="Address">
+
+    <button onclick="generateQR()">
+        Generate QR Code
+    </button>
+
+    <div id="qrcode"></div>
+
+    <div id="profileLink"></div>
+
+</div>
+
+
+<script>
+
+function generateQR() {
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const studentId =
+        document.getElementById("studentId").value.trim();
+
+    const age =
+        document.getElementById("age").value.trim();
+
+    const dob =
+        document.getElementById("dob").value;
+
+    const address =
+        document.getElementById("address").value.trim();
+
+
+    if (
+        name === "" ||
+        studentId === "" ||
+        age === "" ||
+        dob === "" ||
+        address === ""
+    ) {
+
+        alert("Please fill all details.");
+
+        return;
+    }
+
+
+    // YOUR REAL PROFILE URL
+
+    const baseURL =
+        "https://2426148harshitapawar-create.github.io/profile.html";
+
+
+    // Create URL
+
+    const profileURL =
+        baseURL +
+        "?name=" + encodeURIComponent(name) +
+        "&studentId=" + encodeURIComponent(studentId) +
+        "&age=" + encodeURIComponent(age) +
+        "&dob=" + encodeURIComponent(dob) +
+        "&address=" + encodeURIComponent(address);
+
+
+    // Remove old QR
+
+    document.getElementById("qrcode").innerHTML = "";
+
+
+    // Generate QR
+
+    new QRCode(
+        document.getElementById("qrcode"),
+        {
+            text: profileURL,
+            width: 250,
+            height: 250,
+            correctLevel: QRCode.CorrectLevel.H
+        }
+    );
+
+
+    // Show URL
+
+    document.getElementById("profileLink").innerHTML =
+        "<b>Profile URL:</b><br>" +
+        "<a href='" +
+        profileURL +
+        "' target='_blank'>" +
+        profileURL +
+        "</a>";
+
+}
+
+</script>
+
+</body>
+</html>

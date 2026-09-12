@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zuvi User Profile</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fb;
+            padding: 30px;
+        }
+
+        .profile {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #6657d9;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        .info p {
+            padding: 12px;
+            background: #f5f6fb;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile">
+
+    <h1>Zuvi User Profile</h1>
+
+    <div class="info">
+
+        <p>
+            <b>Name:</b>
+            <span id="name"></span>
+        </p>
+
+        <p>
+            <b>Student ID:</b>
+            <span id="studentId"></span>
+        </p>
+
+        <p>
+            <b>Age:</b>
+            <span id="age"></span>
+        </p>
+
+        <p>
+            <b>Date of Birth:</b>
+            <span id="dob"></span>
+        </p>
+
+        <p>
+            <b>Address:</b>
+            <span id="address"></span>
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+document.getElementById("name").innerText =
+    params.get("name") || "";
+
+document.getElementById("studentId").innerText =
+    params.get("studentId") || "";
+
+document.getElementById("age").innerText =
+    params.get("age") || "";
+
+document.getElementById("dob").innerText =
+    params.get("dob") || "";
+
+document.getElementById("address").innerText =
+    params.get("address") || "";
+
+</script>
+
+</body>
+</html>
